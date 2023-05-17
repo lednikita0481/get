@@ -29,12 +29,12 @@ try:
     t_begin = time.time()
     value = adc()
     GPIO.output(troyka, 1)
-    for i in range(400):
+    for i in range(600):
         value = adc()
         measure.append(value)
         
     GPIO.output(troyka, 0)
-    for i in range(400):
+    for i in range(600):
         value = adc()
         measure.append(value)
  
@@ -46,7 +46,7 @@ try:
          file.write("\n".join(str_measure))
     
     with open("settings.txt", "w") as file:
-         file.write(str(1/((t_end - t_begin)/800)))
+         file.write(str(1/((t_end - t_begin)/1200)))
 
     plt.plot(measure)
     plt.show()
@@ -56,4 +56,4 @@ finally:
     GPIO.cleanup()
     print("I finished")
     print(t_end - t_begin)
-    print((t_end - t_begin)/800)
+    print((t_end - t_begin)/1200)
